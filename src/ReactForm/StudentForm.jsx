@@ -135,7 +135,7 @@ export const StudentForm = () => {
 
       <div className="mt-3">
         <input
-          // defaultValue={searchParams.get("student") || ""}
+          defaultValue={searchParams.get("student") || ""}
           className="form-control"
           placeholder="Tìm kiếm sinh viên"
           onChange={(ev) => {

@@ -28,35 +28,7 @@ export const StudentTable = () => {
           </tr>
         </thead>
         <tbody>
-          {!keyStudentSearch &&
-            studentList.map((student) => (
-              <tr key={student.id}>
-                <td>{student.id}</td>
-                <td>{student.name}</td>
-                <td>{student.phone}</td>
-                <td>{student.email}</td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() =>
-                      dispatch(reactFormActions.deleteStudent(student.id))
-                    }
-                  >
-                    Xóa
-                  </button>
-                  <button
-                    className="btn btn-info ms-3"
-                    onClick={() =>
-                      dispatch(reactFormActions.editStudent(student))
-                    }
-                  >
-                    Sửa
-                  </button>
-                </td>
-              </tr>
-            ))}
-          {!!keyStudentSearch &&
-            newStudentList.map((student) => (
+          { newStudentList.map((student) => (
               <tr key={student.id}>
                 <td>{student.id}</td>
                 <td>{student.name}</td>
