@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSearchParams } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { reactFormActions } from "../store/ReactForm/sliceReactForm";
 
 export const StudentForm = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const {
     handleSubmit,
     register,
@@ -16,7 +21,6 @@ export const StudentForm = () => {
   });
 
   const { studentEdit } = useSelector((state) => state.reactFormReducer);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,6 +37,7 @@ export const StudentForm = () => {
 
     reset(studentEdit);
   }, [studentEdit]);
+
   return (
     <form
       onSubmit={handleSubmit((payload) => {
@@ -126,6 +131,27 @@ export const StudentForm = () => {
         {!!studentEdit && (
           <button className="btn btn-info ms-3">Cập nhật</button>
         )}
+      </div>
+
+      <div className="mt-3">
+        <input
+          // defaultValue={searchParams.get("student") || ""}
+          className="form-control"
+          placeholder="Tìm kiếm sinh viên"
+          onChange={(ev) => {
+            setInputValue(ev.target.value);
+          }}
+        />
+        <button
+          className="btn btn-info ms-3"
+          onClick={() => {
+            setSearchParams({
+              student: inputValue,
+            });
+          }}
+        >
+          Tìm kiếm
+        </button>
       </div>
     </form>
   );
